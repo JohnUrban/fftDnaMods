@@ -2,7 +2,7 @@
 A simple python script to work with 2-column tables and do some FFT stuff.
 
 
-Many thanks to Kevin Urban at Early Signal (kevin.urban@earlysignal.org) for his valuable insights on FFT analysis of sequence data.  
+Many thanks to Kevin Urban at Early Signal (kevin.urban@earlysignal.org) and Cohen Veterans Bioscience (https://www.cohenveteransbioscience.org/our-team/) for his valuable insights on FFT analysis of sequence data.  
 
 
 
