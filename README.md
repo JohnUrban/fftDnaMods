@@ -23,6 +23,7 @@ fftForDnaMods.py -c 200 -r 10 spacing*txt
 
 ## Options:
 --cutoff/-c  Just says to only look at X values (bp lengths) up to this high.
+
 --rmedge/-r  Gives it a fudge factor to ignore edges of power array when looking for maximum power position.
 
 
