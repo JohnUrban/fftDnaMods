@@ -18,13 +18,14 @@ fftForDnaMods.py spacing*txt
 
 >Same as:
 
-fftForDnaMods.py -c 200 -r 10 spacing*txt
+fftForDnaMods.py -c 200 -M 100 spacing*txt
 
 
 ## Options:
 --cutoff/-c  Just says to only look at X values (bp lengths) up to this high.
 
---rmedge/-r  Gives it a fudge factor to ignore edges of power array when looking for maximum power position.
+--max_period/-M  Allows one to look for the max power peak periodicity excluding periods greater than this.
+
 
 
 This script is obviously very simple in terms of finding a single max peak value.
