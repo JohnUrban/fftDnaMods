@@ -6,15 +6,15 @@ Many thanks to Kevin Urban at Early Signal (kevin.urban@earlysignal.org) for his
 
 
 
-Example usage:
+# Example usage:
 
-# Get example data out
+>Get example data out
 tar -xzf example-data.tar.gz
 
-# Run script with defaults
+>Run script with defaults
 fftForDnaMods.py spacing*txt
 
-# Same as
+>Same as
 fftForDnaMods.py -c 200 -r 10 spacing*txt
 
 
@@ -23,6 +23,5 @@ fftForDnaMods.py -c 200 -r 10 spacing*txt
 --rmedge/-r  Gives it a fudge factor to ignore edges of power array when looking for maximum power position.
 
 
-## This script is obviously very simple in terms of finding a single max peak value.
-
+This script is obviously very simple in terms of finding a single max peak value.
 
