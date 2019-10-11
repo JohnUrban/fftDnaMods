@@ -1,6 +1,11 @@
 # fftDnaMods
 A simple python script to work with 2-column tables and do some FFT stuff.
 
+
+Many thanks to Kevin Urban at Early Signal (kevin.urban@earlysignal.org) for his valuable insights on FFT analysis of sequence data.  
+
+
+
 Example usage:
 
 # Get example data out
