@@ -3,7 +3,7 @@ import sys, os, argparse
 import numpy as np
 from collections import defaultdict
 import pandas as pd
-
+from matplotlib import pyplot as plt
 
 
 parser = argparse.ArgumentParser(description="""
@@ -60,8 +60,11 @@ parser.add_argument('-c', '--cutoff', type=int, default=200,
                     help='''Only use X values <= cutoff. Default=200.''')
 
 
-parser.add_argument('-M', '--max_period', type=int, default=100,
-                    help='''When looking for periodicity length, in addition to using the entire power array, also get the value when only looking at periods <= this value. Example default would be 100.''')
+parser.add_argument('-M', '--max_period', type=int, default=1000000000000,
+                    help='''When looking for periodicity length, in addition to using the entire power array, also get the value when only looking at periods <= this value. Example setting would be 100. Defaults to very high number to include all (1e12).''')
+
+parser.add_argument('-P', '--plot', type=str, default=False,
+                    help='''Make plots.... Provide 'pdf', 'png', 'jpg',... as argument.''')
 
 
 
@@ -69,7 +72,7 @@ args = parser.parse_args()
 
 
 # Functions
-def fft(fh, cutoff=200, max_period=100):
+def fft(fh, cutoff=200, max_period=10000000000000, plot=False):
     df = pd.read_csv(fh, sep='\t', header=None, names=['bptime','activation'])
     df = df[df['bptime']<=cutoff]
     N = len(df.activation)
@@ -85,19 +88,28 @@ def fft(fh, cutoff=200, max_period=100):
     power = power[index]
     periodicity = 1.0/freqs
     
-    i = power.argmax()
-    bp_withedge = periodicity[i]
+    #i = power.argmax()
+    #bp_withedge = periodicity[i]
+    #power_withedge = power[i]
     #i = power[rmedge:-rmedge].argmax()
     #bp_rmedges = periodicity[rmedge:-rmedge][i]
     i = power[periodicity <= max_period].argmax()
-    bp_maxper = periodicity[periodicity <= max_period][i]
-    return os.path.basename(fh), bp_withedge, bp_maxper
+    maxbp = periodicity[periodicity <= max_period][i]
+    maxpower = power[periodicity <= max_period][i]
+    if plot:
+        plt.plot(freqs,power)
+        plt.xlabel("Frequency (1/periodicity)")
+        plt.ylabel("Power")
+        plt.title(os.path.basename(fh))
+        plt.savefig('plot.'+os.path.basename(fh)+'.'+plot)   
+        plt.close() 
+    return os.path.basename(fh), maxbp, maxpower 
 
 
 def main(args):
     # Loop
     for fh in args.files:
-        print '\t'.join([str(e) for e in fft(fh, args.cutoff, args.max_period)])
+        print '\t'.join([str(e) for e in fft(fh, args.cutoff, args.max_period, args.plot)])
 
 
 

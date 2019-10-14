@@ -21,6 +21,16 @@ fftForDnaMods.py spacing*txt
 fftForDnaMods.py -c 200 -M 100 spacing*txt
 
 
+>To also generate Frequency vs Power plots, do:
+
+fftForDnaMods.py --plot png -c 200 -M 100 spacing*txt
+
+or
+
+fftForDnaMods.py --plot pdf -c 200 -M 100 spacing*txt
+
+
+
 ## Options:
 --cutoff/-c  Just says to only look at X values (bp lengths) up to this high.
 
